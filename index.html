@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Praktikum 7</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <div class="header">
+        <h1>W3SCHOOL #1</h1>
+        <p>Oleh : Aryanda Rizky Pratama (105219038)</p>
+      </div>
+      <style>
+        /* Style the body */
+        body {
+            font-family: Arial;
+            margin: 0;
+            padding: 0px;
+            background-color: white;
+            color: black;
+            font-size: 25px;
+        }
+        .dark-mode {
+                    background-color: rgb(90, 87, 87);
+                    color: white;
+        }
+        
+        /* Header/Logo Title */
+        .header {
+          padding: 40px;
+          text-align: center;
+          background: #1abc9c;
+          color: white;
+          font-size: 20px;
+        }
+        
+        /* Page Content */
+        .content {
+            padding:20px;
+        }
+        .container {
+
+            margin: auto;
+            width: 20%;
+            /* border: 3px solid green; */
+            padding-top: 40px;
+            padding-bottom: 30px;
+            justify-content: center;
+       
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            /* border: 3px solid green; */
+            top: 20px;
+            margin-top: 20px;
+            width:100%; height:100%; 
+           
+        }
+ 
+
+        </style>
+</head>
+
+  <body>
+
+
+    <div class="container">
+        <select name="provinsi" id="provinsi" onchange="dataKota()">
+            <option value="" selected>Provinsi</option>
+            <option value="babel">Kep. Bangka Belitung</option>
+            <option value="jakarta">DKI Jakarta</option>
+            <option value="jawabarat">Jawa Barat</option>
+            <option value="jawatimur">Jawa Timur</option>
+        </select>
+
+        <select name="kota" id="kota" onchange="outputDaerah()">
+            <option value="" selected>Kota</option>
+            <option id='kota1' value=""></option>
+            <option id='kota2' value=""></option>
+            <option id='kota3' value=""></option>
+            <option id='kota4' value=""></option>
+            <option id='kota5' value=""></option>
+        </select>
+    </div>
+
+    <div id="regionOutput"></div>
+    <div class="center">
+      <button onclick="myFunction()">Ubah Mode</button></div>
+</body>
+
+<script>
+    function myFunction() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+    }
+    const dataDaerah = {
+        "babel" : ["Belitung", "Manggar", "Bangka", "Muntok","Bangka Tengah"],
+        "jakarta" : ["Jakarta Selatan", "Jakarta Timur", "Jakarta Utara", "Jakarta Barat","Cengkareng"],
+        "jawabarat" : ["Bandung", "Bogor", "Depok", "Magelang","kotaaa"],
+        "jawatimur" : ["malang", "bromo", "gunung", "gung","kotaaaa"]
+    };
+
+
+    function dataKota() {
+        provinsi = document.getElementById("provinsi");
+        
+        for(let i = 0; i <= 5; i++) {
+            kota = document.getElementById(`kota${i+1}`);
+            kota.value = dataDaerah[`${provinsi.value}`][i];
+            kota.innerHTML = dataDaerah[`${provinsi.value}`][i];
+        }
+    }
+
+    function outputDaerah() {
+        provinsi = document.getElementById("provinsi");
+        kota = document.getElementById("kota");
+        output = document.getElementById("regionOutput");
+        
+        output.innerHTML = `<p style="text-align:center;">${provinsi.options[provinsi.selectedIndex].innerHTML}
+        Kota ${kota.options[kota.selectedIndex].innerHTML}</p>`;
+            
+    }
+    
+</script>
+</html>
